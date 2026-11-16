@@ -19,3 +19,10 @@
 # ABS rebar schedules (BVBS) terminate records with CRLF and checksum
 # every character, so a line-ending conversion would break the sample.
 *.abs -text
+
+# Files that run inside Linux containers must keep LF even on a Windows
+# checkout (core.autocrlf=true): a CRLF shebang makes the image fail with
+# "exec /app/entrypoint.sh: no such file or directory".
+*.sh text eol=lf
+Dockerfile* text eol=lf
+docker-compose*.yml text eol=lf
